@@ -1,6 +1,6 @@
 local Module = {}
 
-function Module:new(Type,TABLE)
+function Module.new(Type,TABLE)
 	local HS = require(script:FindFirstChildOfClass("ModuleScript"):Clone())
 	local NewHint = HS.new()
 	if Type == 1 then
@@ -20,7 +20,7 @@ function Module:new(Type,TABLE)
 	return NewHint
 end
 
-function Module:once()
+function Module.once()
 	local Plugins = Instance.new("Folder")
 	local Assets = Instance.new("Folder")
 	local Hints = Instance.new("ScreenGui")
