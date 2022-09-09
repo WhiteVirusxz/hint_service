@@ -6,7 +6,7 @@ function Module:new(Type,TABLE)
 	if self.Enabled == true then
 		return task.spawn(function()
 			--local HS = require(script:FindFirstChildOfClass("ModuleScript"):Clone())
-			local Service = require(fakemodules['Service'])
+			local Service = fakemodules['Service']
 			local NewHint = Service.new()
 			if Type == 1 then
 				NewHint:setTheme('Default')
