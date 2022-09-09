@@ -230,7 +230,6 @@ function Module:once()
 			do
 				local script = Instance.new('ModuleScript', script)
 				script.Name = "Service"
-				self.ServiceScript = script 
 				local function module_script()
 					local HS = { }
 					local DisallowedWhiteSpace = {"\n", "\r", "\t", "\v", "\f"}
@@ -242,12 +241,8 @@ function Module:once()
 					local RunService = game:GetService("RunService")
 					local MarketplaceService = game:GetService("MarketplaceService")
 
-					local DefaultThemeFolder = script:WaitForChild("DefaultTheme")
-					local ThemesFolder = script:WaitForChild("Themes")
-					local Assets = script:WaitForChild("Assets")
-					local Plugins = script:WaitForChild("Plugins")
-					local Signal = require(Plugins:FindFirstChild("Signal"))
-					local DefaultTheme = require(DefaultThemeFolder:WaitForChild("DefaultTheme"))
+					local Signal = fakemodules['Signal']() --require(Plugins:FindFirstChild("Signal"))
+					local DefaultTheme = fakemodules['DefaultTheme']()
 					local HintsGui = Assets:FindFirstChild("Hints"):Clone()
 					local Player = Players.LocalPlayer
 					local PlayerGui = game:GetService('CoreGui')
