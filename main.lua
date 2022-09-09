@@ -1,23 +1,25 @@
 local Module = {}
 
 function Module:new(Type,TABLE)
-	local HS = require(script:FindFirstChildOfClass("ModuleScript"):Clone())
-	local NewHint = HS.new()
-	if Type == 1 then
-		NewHint:setTheme('Default')
-	elseif Type == 2 then
-		NewHint:setTheme('Warn')
-	elseif Type == 3 then
-		NewHint:setTheme('Error')
-	end
-	NewHint:setText(TABLE['Text'])
-	NewHint:setBottomRight()
-	NewHint:setTweenLength(TABLE['Len']['In'], TABLE['Len']['Out'])
-	NewHint:setBroadcastTime(TABLE['BTime']['IsInfinite'], TABLE['BTime']['Time'])
-	NewHint:setTweenStyle(TABLE['Style']['In'], TABLE['Style']['Out'])
-	NewHint:setTweenDirection(TABLE['Direction']['In'], TABLE['Direction']['Out'])
-	NewHint:broadcast(TABLE['Broadcast'])
-	return NewHint
+	return task.spawn(function()
+		local HS = require(script:FindFirstChildOfClass("ModuleScript"):Clone())
+		local NewHint = HS.new()
+		if Type == 1 then
+			NewHint:setTheme('Default')
+		elseif Type == 2 then
+			NewHint:setTheme('Warn')
+		elseif Type == 3 then
+			NewHint:setTheme('Error')
+		end
+		NewHint:setText(TABLE['Text'])
+		NewHint:setBottomRight()
+		NewHint:setTweenLength(TABLE['Len']['In'], TABLE['Len']['Out'])
+		NewHint:setBroadcastTime(TABLE['BTime']['IsInfinite'], TABLE['BTime']['Time'])
+		NewHint:setTweenStyle(TABLE['Style']['In'], TABLE['Style']['Out'])
+		NewHint:setTweenDirection(TABLE['Direction']['In'], TABLE['Direction']['Out'])
+		NewHint:broadcast(TABLE['Broadcast'])
+		return NewHint
+	end)
 end
 
 function Module:once()
