@@ -230,6 +230,7 @@ function Module:once()
 			do
 				local script = Instance.new('ModuleScript', script)
 				script.Name = "Service"
+				self.ServiceScript = script 
 				local function module_script()
 					local HS = { }
 					local DisallowedWhiteSpace = {"\n", "\r", "\t", "\v", "\f"}
@@ -952,10 +953,10 @@ function Module:once()
 			end
 		end)
 
-		Assets.Parent = script:FindFirstChildOfClass('ModuleScript')
-		Plugins.Parent = script:FindFirstChildOfClass('ModuleScript')
-		Themes.Parent = script:FindFirstChildOfClass('ModuleScript')
-		DefaultTheme.Parent = script:FindFirstChildOfClass('ModuleScript')
+		Assets.Parent = self.ServiceScript
+		Plugins.Parent = self.ServiceScript
+		Themes.Parent = self.ServiceScript
+		DefaultTheme.Parent = self.ServiceScript
 		
 		self.Enabled = true
 	end)
