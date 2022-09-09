@@ -1,11 +1,9 @@
-local Module = {
-	Enabled = false
-}
+local Module = {}
 
 local fakemodules = {}
 
 function Module:new(Type,TABLE)
-	if Module.Enabled == true then
+	if self.Enabled == true then
 		return task.spawn(function()
 			--local HS = require(script:FindFirstChildOfClass("ModuleScript"):Clone())
 			local Service = require(fakemodules['Service'])
@@ -951,7 +949,7 @@ function Module:once()
 	Themes.Parent = script:FindFirstChildOfClass('ModuleScript')
 	DefaultTheme.Parent = script:FindFirstChildOfClass('ModuleScript')
 
-	Module.Enabled = true
+	self.Enabled = true
 end
 
 return Module
