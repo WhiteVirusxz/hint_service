@@ -228,32 +228,32 @@ do
 		local debounceEnabled = false
 		local lastHint = 0
 
-		local function argumentError(argument : string, functionName : string)
+		local function argumentError(argument, functionName)
 			argument = argument or "nil"
 			functionName = functionName or "nil"
 			error(string.format("The %s argument must be passed in the %s function.", argument, functionName))
 		end
 
-		local function invalidError(object : string, type : string)
+		local function invalidError(object, type)
 			object = object or "nil"
 			type = type or "nil"
 			error(string.format("%s is not a valid %s.", object, type))
 		end
 
-		local function customError(msg : string, ...)
+		local function customError(msg, ...)
 			error(string.format(msg, ...))
 		end
 
-		local function customError2(msg : string)
+		local function customError2(msg)
 			error(msg)
 		end
 
-		local function onMenuOpenedConfig(isHintVisible : boolean)
+		local function onMenuOpenedConfig(isHintVisible)
 			HintsGui.Enabled = isHintVisible
 		end
 
 
-		local function removeFromTable(self : any)
+		local function removeFromTable(self)
 			local index = table.find(CurrentlyBroadcasted, self)
 
 			if index then
@@ -261,7 +261,7 @@ do
 			end
 		end
 
-		local function setHintProperties(self : any)
+		local function setHintProperties(self)
 			if not self then
 				argumentError("self", "setHintProperties")
 			end
@@ -281,7 +281,7 @@ do
 			self.LabelTransparency = self.HintTheme.labelTransparency
 		end
 
-		local function cancelBroadcast(self : any)
+		local function cancelBroadcast(self)
 			local animationType = self.AnimationType
 			local label = self._
 			local tweenLength2 = self.TweenLength2
@@ -315,7 +315,7 @@ do
 			end
 		end
 
-		local function animateHint(self : any)
+		local function animateHint(self)
 			local animationType = self.AnimationType
 			local destroyOnFinish = self.DestroyOnFinish
 			local label = self._
@@ -459,29 +459,29 @@ do
 			return self
 		end
 
-		function HS:setLayoutOrder(order : number)
+		function HS:setLayoutOrder(order)
 			order = order or 0
 			local label = self._
 
 			label.LayoutOrder = order
 		end
 
-		function HS.setDisplayOrder(order : number)
+		function HS.setDisplayOrder(order)
 			order = order or 999999999
 			HintsGui.DisplayOrder = order
 		end
 
-		function HS.setResetOnSpawn(enabled : boolean)
+		function HS.setResetOnSpawn(enabled)
 			enabled = enabled or false
 			HintsGui.ResetOnSpawn = enabled
 		end
 
-		function HS:setBroadcastFinished(destroy : boolean)
+		function HS:setBroadcastFinished(destroy)
 			destroy = destroy or false
 			self.DestroyOnFinish = destroy
 		end
 
-		function HS:setText(text : string)
+		function HS:setText(text)
 			text = text or ""
 			for k,v in ipairs(DisallowedWhiteSpace) do
 				if string.find(text, v) then
@@ -493,7 +493,7 @@ do
 			label.Text = text
 		end
 
-		function HS:setBroadcastTime(isInfinite : boolean, time : number)
+		function HS:setBroadcastTime(isInfinite, time)
 			time = time or 12
 			isInfinite = isInfinite or false
 			local label = self._
@@ -550,7 +550,7 @@ do
 			alignment = 5
 		end
 
-		function HS:setRichText(enabled : boolean)
+		function HS:setRichText(enabled)
 			enabled = enabled or false
 			local label = self._
 
@@ -589,7 +589,7 @@ do
 			end
 		end
 
-		function HS:setTweenType(type : "Fade" | "None")
+		function HS:setTweenType(type)
 			self.AnimationType = type
 		end
 
@@ -606,7 +606,7 @@ do
 			return self.VisibleTime
 		end
 
-		function HS:getTweenLength(type : "1" | "2")
+		function HS:getTweenLength(type)
 			if type == "1" then
 				return self.TweenLength1
 			else
@@ -614,7 +614,7 @@ do
 			end
 		end
 
-		function HS:getTweenDirection(type : "1" | "2")
+		function HS:getTweenDirection(type)
 			if type == "1" then
 				return self.EasingDirection1
 			else
@@ -622,7 +622,7 @@ do
 			end
 		end
 
-		function HS:getTweenStyle(type : "1" | "2")
+		function HS:getTweenStyle(type)
 			if type == "1" then
 				return self.EasingStyle1
 			else
@@ -630,7 +630,7 @@ do
 			end
 		end
 
-		function HS:getTweenType(type : "1" | "2")
+		function HS:getTweenType(type)
 			return self.AnimationType
 		end
 
@@ -654,11 +654,11 @@ do
 			return self.IsBroadcasted
 		end
 
-		function HS.getBroadcastedHints(): {}
+		function HS.getBroadcastedHints()
 			return CurrentlyBroadcasted
 		end
 
-		function HS:broadcast(yieldThreadUntilHintFinished : boolean)
+		function HS:broadcast(yieldThreadUntilHintFinished)
 			yieldThreadUntilHintFinished = yieldThreadUntilHintFinished or false
 
 			if debounceEnabled then
@@ -765,7 +765,7 @@ do -- Plugins.Signal
 			}, Signal)
 		end
 
-		function Signal:Connect(func : (any) -> ())
+		function Signal:Connect(func)
 			local connection = Connection.new(self, func)
 			if self._handlerListHead then
 				connection._next = self._handlerListHead
@@ -804,7 +804,7 @@ do -- Plugins.Signal
 			return coroutine.yield()
 		end
 
-		function Signal:Once(func :(any) -> ())
+		function Signal:Once(func)
 			local cn;
 			cn = self:Connect(function(...)
 				if cn._connected then
