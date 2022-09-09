@@ -241,6 +241,10 @@ function Module:once()
 					local RunService = game:GetService("RunService")
 					local MarketplaceService = game:GetService("MarketplaceService")
 
+					local DefaultThemeFolder = DefaultTheme
+					local ThemesFolder = Themes
+					local Assets = Assets
+					local Plugins = Plugins
 					local Signal = fakemodules['Signal']() --require(Plugins:FindFirstChild("Signal"))
 					local DefaultTheme = fakemodules['DefaultTheme']()
 					local HintsGui = Assets:FindFirstChild("Hints"):Clone()
@@ -607,7 +611,7 @@ function Module:once()
 
 					function HS:setTheme(theme)
 						if ThemesFolder:FindFirstChild(theme) and ThemesFolder:FindFirstChild(theme):IsA("ModuleScript") then
-							self.HintTheme = require(ThemesFolder:FindFirstChild(theme))
+							self.HintTheme = fakemodules[theme]
 						else
 							invalidError(theme, "theme")
 						end
