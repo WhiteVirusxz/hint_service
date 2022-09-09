@@ -557,7 +557,7 @@ do
 			label.RichText = enabled
 		end
 
-		function HS:setTweenLength(length1 : number, length2 : number)
+		function HS:setTweenLength(length1, length2)
 			length1 = length1 or 1
 			length2 = length2 or 1
 
@@ -565,7 +565,7 @@ do
 			self.TweenLength2 = length2
 		end
 
-		function HS:setTweenDirection(direction1 : Enum.EasingDirection, direction2 : Enum.EasingDirection)
+		function HS:setTweenDirection(direction1, direction2)
 			direction1 = direction1 or Enum.EasingDirection.In
 			direction2 = direction2 or Enum.EasingDirection.Out
 
@@ -573,7 +573,7 @@ do
 			self.EasingDirection2 = direction2
 		end
 
-		function HS:setTweenStyle(style1 : Enum.EasingStyle, style2 : Enum.EasingStyle)
+		function HS:setTweenStyle(style1, style2)
 			style1 = style1 or Enum.EasingStyle.Quad
 			style2 = style2 or Enum.EasingStyle.Quad
 
@@ -581,7 +581,7 @@ do
 			self.EasingStyle2 = style2
 		end
 
-		function HS:setTheme(theme : string)
+		function HS:setTheme(theme)
 			if ThemesFolder:FindFirstChild(theme) and ThemesFolder:FindFirstChild(theme):IsA("ModuleScript") then
 				self.HintTheme = require(ThemesFolder:FindFirstChild(theme))
 			else
@@ -593,20 +593,20 @@ do
 			self.AnimationType = type
 		end
 
-		function HS.setDebounceTime(time : number)
+		function HS.setDebounceTime(time)
 			debounceEnabled = true
 			debounceTime = time or 0
 		end
 
-		function HS:getText(): string
+		function HS:getText()
 			return self._.Text
 		end
 
-		function HS:getBroadcastTime(): number
+		function HS:getBroadcastTime()
 			return self.VisibleTime
 		end
 
-		function HS:getTweenLength(type : "1" | "2"): number
+		function HS:getTweenLength(type : "1" | "2")
 			if type == "1" then
 				return self.TweenLength1
 			else
@@ -614,7 +614,7 @@ do
 			end
 		end
 
-		function HS:getTweenDirection(type : "1" | "2"): Enum.EasingDirection
+		function HS:getTweenDirection(type : "1" | "2")
 			if type == "1" then
 				return self.EasingDirection1
 			else
@@ -622,7 +622,7 @@ do
 			end
 		end
 
-		function HS:getTweenStyle(type : "1" | "2"): Enum.EasingStyle
+		function HS:getTweenStyle(type : "1" | "2")
 			if type == "1" then
 				return self.EasingStyle1
 			else
@@ -630,27 +630,27 @@ do
 			end
 		end
 
-		function HS:getTweenType(type : "1" | "2"): "Fade" | "None"
+		function HS:getTweenType(type : "1" | "2")
 			return self.AnimationType
 		end
 
-		function HS:getRichTextEnabled(): boolean
+		function HS:getRichTextEnabled()
 			return self._.RichText
 		end
 
-		function HS:getHintAlignment(): number
+		function HS:getHintAlignment()
 			return self.HintAlignment
 		end
 
-		function HS:getTheme(): ModuleScript
+		function HS:getTheme()
 			return self.HintTheme
 		end
 
-		function HS:getHintSize(): Vector2
+		function HS:getHintSize()
 			return self._.AbsoluteSize
 		end
 
-		function HS:getIsBroadcasted(): boolean
+		function HS:getIsBroadcasted()
 			return self.IsBroadcasted
 		end
 
